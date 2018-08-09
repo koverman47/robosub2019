@@ -52,12 +52,12 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
    FILES
-   #MotorCommands.msg
+   MotorCommands.msg
    #Depth.msg
    #Hydrophone.msg
-   #ObjectDetection.msg
+   Detection.msg
    #State.msg
-   #Key.msg
+   Key.msg
    #Arm.msg
    #PneumaticCommand.msg
 )
