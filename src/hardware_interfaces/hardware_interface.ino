@@ -31,8 +31,6 @@ int motorPins[numMotors] = {
 	9  // Aft Starboard Depth
 };
 
-bool armDown = false;
-bool handOpen = false;
 /***** End Pin Definitions *****/
 
 Servo motors[numMotors];
