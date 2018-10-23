@@ -4,7 +4,7 @@ import rospy
 import math
 
 from robosub2019.msg import Key
-from robosub2019.msg import MotorCommands as MC
+from robosub2019.msg import MotorCommands
 
 
 '''
@@ -25,7 +25,7 @@ com_pub = None
 
 com_msg = None
 
-command_timeout = None
+command_timeout = dict()
 timeout_delay = 200
 
 power = 1
@@ -53,6 +53,7 @@ key_mappings = {119:    {0: 1, 1: 1},   # w - forward
 
 
 def user_input(key, down):
+    global command_timeout
     
     key = int(key.code)
 
@@ -90,13 +91,13 @@ def send_commands():
 
 
 def main():
-    global com_msg
+    global com_msg, com_pub, command_timeout
 
     rospy.init_node('UserInput')
     rospy.Subscriber("keyboard/keydown", Key, key_down)
     rospy.Subscriber("keyboard/keyup", Key, key_up)
 
-    com_pub = Publisher("command/motor", MotorCommands, queue_size=32)
+    com_pub = rospy.Publisher("command/motor", MotorCommands, queue_size=32)
 
     com_msg = MotorCommands()
     com_msg.header.seq = 0
