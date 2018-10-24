@@ -11,6 +11,32 @@ string port = "/dev/ttyUSB0";
 int baud = 115200
 
 
+vector<double> eulerToQuaternion(vector<double> euler) {
+	/*
+	 * roll  = euler[0]
+	 * pitch = euler[1]
+	 * yaw	 = euler[2]
+	 */
+
+	double rollCos = cos(euler[0] / 2);
+	double rollSin = sin(euler[0] / 2);
+
+	double pitchCos = cos(euler[1] / 2);
+	double pitchSin = sin(euler[1] / 2);
+
+	double yawCos = cos(euler[2] / 2);
+	double yawSin = sin(euler[2] / 2);
+
+	double w = (rollCos * pitchCos * yawCos) + (rollSin * pitchSin * yawSin);
+	double x = (rollSin * pitchCos * yawCos) + (rollCos * pitchSin * yawSin);
+	double y = (rollCos * pitchSin * yawCos) + (rollSin * pitchCos * yawSin);
+	double z = (rollCos * pitchCos * yawSin) + (rollSin * pitchSin * yawCos);
+
+	vector<double> quat = {w, x, y, z};
+	return quat;
+}
+
+
 vector<double> getIMUData(string command) {
 	ser.write(command);
 	// readline

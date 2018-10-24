@@ -1,0 +1,5 @@
+Use [x y z] for position.
+Use [w x y z] for orientation*.
+
+
+*UKF needs to handle quaternion data - What is the transition function?
