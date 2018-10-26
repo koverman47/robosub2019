@@ -1,0 +1,15 @@
+Upload notes on:
+
+ 1. PID controller
+ 2. PID tuning processes
+ 3. State error -> motor commands conversion
+ 4. Bayesian Filtering
+ 5. Kalman Filter Algorithm
+	 - Proof of Correctness
+ 6. Unscented Kalman Filter Algorithm
+ 	 - Description of Reasoning
+ 7. UKF parameter tuning processes
+ 8. Survey of object detection techniques (2010 - 2018)
+ 9. Methods of Numerical Integration
+10. Important Conversions (Euler <-> Quaternion, systems)
+11. 

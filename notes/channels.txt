@@ -8,6 +8,9 @@ sensors/depth
 sensors/camF/image_raw
 sensors/camF/camera_info
 
+# Commands
+command/motor
+
 # Robot
 bobcat/state
 bobcat/detections

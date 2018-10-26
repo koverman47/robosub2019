@@ -1,12 +1,11 @@
 #include <ros/ros.h>
-#include <sensor_msgs/Imu.h>
-#include <std_msgs/String.h>
+#include <robosub2018/State.h>
 #include <serial/serial.h>
 #include <sstream>
 #include <vector>
 #include <cmath>
 
-
+// Intel NUC
 string port = "/dev/ttyUSB0";
 int baud = 115200
 
@@ -51,8 +50,8 @@ int main(int argc, char **argv) {
 	ros::init(argc, argv, "imu");
 	ros::NodeHandle n;
 
-	ros::Publisher imuPublisher = n.advertise<sensors_msgs::Imu>("sensors/imu", 8);
-	sensors_msgs::Imu msg;
+	ros::Publisher imuPublisher = n.advertise<robosub2019::State>("sensors/state", 8);
+	robosub2019::State msg;
 	try {
 		serial::Serial ser;
 		ser.setPort(port);
@@ -86,6 +85,9 @@ int main(int argc, char **argv) {
 		/*
 		 * Gyrometer
 		 * Conversions: millidegrees -> radians
+		 *
+		 * NOTE: ROS Imu Message uses 3DOF, ~4DOF
+		 * NOTE: Robosub2019 State Message uses 4DOF
 		 */
 		double gyro[3] = getIMUData("$PSPA,G\r\n");
 		//msg.angular_velocity.x = gyro[0] * pi / 180 / 1000

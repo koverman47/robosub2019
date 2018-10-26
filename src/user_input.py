@@ -106,7 +106,7 @@ def main():
 
     rate = rospy.Rate(8)
     while not rospy.is_shutdown():
-        # Need timeout because of remote desktop
+        # Need timeout because of remote desktop latency
         for key, value in command_timeout.items():
             if datetime.now().microsecond > value:
                 set_commands(key, 0)
