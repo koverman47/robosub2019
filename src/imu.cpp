@@ -1,8 +1,12 @@
 #include <ros/ros.h>
 #include <robosub2018/State.h>
 #include <serial/serial.h>
+#include <sensor_msgs/Imu.h>
 #include <sstream>
 #include <vector>
+#include <regex>
+
+#define _USE_MATH_DEFINES
 #include <cmath>
 
 // Intel NUC
@@ -90,9 +94,9 @@ int main(int argc, char **argv) {
 		 * NOTE: Robosub2019 State Message uses 4DOF
 		 */
 		double gyro[3] = getIMUData("$PSPA,G\r\n");
-		//msg.angular_velocity.x = gyro[0] * pi / 180 / 1000
-		//msg.angular_velocity.y = gyro[1] * pi / 180 / 1000
-		//msg.angular_velocity.z = gyro[2] * pi / 180 / 1000
+		msg.angular_velocity.x = gyro[0] * M_PI / 180 / 1000
+		msg.angular_velocity.y = gyro[1] * M_PI / 180 / 1000
+		msg.angular_velocity.z = gyro[2] * M_PI / 180 / 1000
 
 		/*
 		 * Accelerometer
@@ -109,4 +113,5 @@ int main(int argc, char **argv) {
 	}
 
 	ros::waitForShutdown();
+	return 0;
 }
